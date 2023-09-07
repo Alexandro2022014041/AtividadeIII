@@ -8,20 +8,14 @@ export default function Home(){
     const [weScore, setWeScore] = useState(0)
     const [theyScore, setTheyScore] = useState(0)
 
-    const onAddScoreWE = () => {
-        setWeScore(weScore + 1)
+    const onAddScore = (isWe: Boolean) => {
+        isWe ? setWeScore(weScore + 1): setTheyScore(theyScore + 1)
     }
 
-    const onAddScoreThey = () => {
-        setTheyScore(theyScore + 1)
-    }
 
-    const onDelScoreWE = () => {
-        setWeScore(weScore - 1)
-    }
-
-    const onDelScoreThey = () => {
-        setTheyScore(theyScore - 1)
+    const onLessScore = (isWe: Boolean) => {
+        isWe ? setWeScore(weScore - 1): setTheyScore(theyScore - 1)
+        
     }
 
     const onCleanScore = () => {
@@ -46,12 +40,12 @@ export default function Home(){
             </View>
             <View style={style.boxContainerButtons}>
                 <View style={style.conteinerButton}>
-                    <Buttons texts={'+1'} onChangeNumber={onAddScoreWE} style={style.buttonAdd}/>
-                    <Buttons texts={'-1'} onChangeNumber={onDelScoreWE} style={style.buttonDel}/>
+                    <Buttons texts={'+1'} onChangeNumber={() => onAddScore(true)} style={style.buttonAdd}/>
+                    <Buttons texts={'-1'} onChangeNumber={() => onAddScore} style={style.buttonDel}/>
                 </View>
                 <View style={style.conteinerButton}>
-                    <Buttons texts={'+1'} onChangeNumber={onAddScoreThey} style={style.buttonAdd}/>
-                    <Buttons texts={'-1'} onChangeNumber={onDelScoreThey} style={style.buttonDel}/>
+                    <Buttons texts={'+1'} onChangeNumber={() => onLessScore(true)} style={style.buttonAdd}/>
+                    <Buttons texts={'-1'} onChangeNumber={() =>  onLessScore} style={style.buttonDel}/>
                 </View>
             </View>
             <View style={style.boxContainerButtonClean}>
